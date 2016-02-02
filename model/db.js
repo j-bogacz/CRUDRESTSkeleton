@@ -1,2 +1,7 @@
+var nconf = require('nconf');
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/crudrestskeleton');
+
+var host = nconf.get('mongoDbHost');
+var port = nconf.get('mongoDbPort');
+
+mongoose.connect(host + ':' + port);
