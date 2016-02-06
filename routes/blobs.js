@@ -46,14 +46,14 @@ router.route('/').get(function (req, res, next) {
 router.route('/').post(function (req, res) {
 	// get values from POST request. These can be done through forms or REST calls. These rely on the "name" attributes for forms
 	var name = req.body.name;
-	var bagde = req.body.badge;
+	var badge = req.body.badge;
 	var dob = req.body.dob;
 	var isLoved = req.body.isLoved;
 	
 	// call the create function for our database
-	mongoose.model('Blob').Create({
+	mongoose.model('Blob').create({
 		name: name,
-		bagde: bagde,
+		badge: badge,
 		dob: dob,
 		isLoved: isLoved
 	}, function (err, blob) {
@@ -126,8 +126,10 @@ router.route('/:id').get(function (req, res) {
 		}
 		else {
 			console.log('GET Retrieving ID: ' + blob._id);
-			var blobDob = blob.dob.ToISOString();
-			blobDob = blobDob.substring(0, blobDob.indexOf('T'));
+			if (blob.dob != null) {
+				var blobDob = blob.dob.toISOString();
+				blobDob = blobDob.substring(0, blobDob.indexOf('T'));
+			}
 			res.format({
 				// HTML response will render the 'show.jade' template
 				html: function () {
@@ -155,8 +157,10 @@ router.get('/:id/edit', function (req, res) {
 		}
 		else {
 			console.log('GET Retrieving ID: ' + blob._id);
-			var blobDob = blob.dob.ToISOString();
-			blobDob = blobDob.substring(0, blobDob.indexOf('T'));
+			if (blob.dob != null) {
+				var blobDob = blob.dob.toISOString();
+				blobDob = blobDob.substring(0, blobDob.indexOf('T'));
+			}
 			res.format({
 				// HTML response will render the 'edit.jade' template
 				html: function () {
@@ -179,7 +183,7 @@ router.get('/:id/edit', function (req, res) {
 router.put('/:id/edit', function (req, res) {
 	// get values from POST request. These can be done through forms or REST calls. These rely on the "name" attributes for forms
 	var name = req.body.name;
-	var bagde = req.body.badge;
+	var badge = req.body.badge;
 	var dob = req.body.dob;
 	var isLoved = req.body.isLoved;
 	
@@ -192,7 +196,7 @@ router.put('/:id/edit', function (req, res) {
 			// update it
 			blob.update({
 				name: name,
-				bagde: bagde,
+				badge: badge,
 				dob: dob,
 				isLoved: isLoved
 			}, function (err, blobId) {
@@ -204,7 +208,8 @@ router.put('/:id/edit', function (req, res) {
 					res.format({
 						// HTML responds by going back to the page or you can be fancy and create a new view that shows a success page.
 						html: function () {
-							res.redirect('/blobs/' + blob._id);
+							//res.redirect('/blobs/' + blob._id);
+							res.redirect('/blobs');
 						},
 						// JSON responds showing the updated values
 						json: function () {
@@ -234,9 +239,9 @@ router.delete('/:id/edit', function (req, res) {
 				else {
 					console.log('DELETE Deleting ID: ' + blob._id);
 					res.format({
-					// HTML returns us back to the main page, or you can create a success page
+						// HTML returns us back to the main page, or you can create a success page
 						html: function () {
-							res.reditrect('/blobs');
+							res.redirect('/blobs');
 						},
 						//JSON returns the item with the message that is has been deleted
 						json: function () {
