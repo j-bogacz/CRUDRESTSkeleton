@@ -15,8 +15,8 @@ nconf.argv()
 	 .env()
 	 .file({ file: './appConfig.json' });
 
-var db = require('./model/db.js')
-var blob = require('./model/blobs.js')
+var db = require('./model/db')
+var blob = require('./model/blobs')
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var blobs = require('./routes/blobs');
