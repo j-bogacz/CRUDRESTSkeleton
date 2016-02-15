@@ -24,7 +24,9 @@
     <Compile Include="public\app\angularBlobs\app.js" />
     <Compile Include="model\blobs.js" />
     <Compile Include="model\db.js" />
+    <Compile Include="public\app\angularBlobs\blobDetailsController.js" />
     <Compile Include="public\app\angularBlobs\blobsController.js" />
+    <Compile Include="public\app\angularBlobs\blobsFactory.js" />
     <Compile Include="public\app\angularBlobs\router.js" />
     <Compile Include="public\vendors\angular-route\angular-route.js" />
     <Compile Include="public\vendors\angular-route\angular-route.min.js" />
@@ -36,6 +38,7 @@
     <Compile Include="routes\blobs.js" />
     <Compile Include="routes\index.js" />
     <Compile Include="routes\users.js" />
+    <Content Include="public\app\angularBlobs\views\blobDetails.html" />
     <Content Include="public\app\angularBlobs\views\blobs.html" />
     <Content Include="public\vendors\angular-route\angular-route.min.js.map" />
     <Content Include="public\vendors\angular-route\bower.json" />

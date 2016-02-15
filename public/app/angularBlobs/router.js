@@ -5,8 +5,8 @@
 			templateUrl: '/app/angularBlobs/views/blobs.html',
 			controller: 'BlobsController'
 		})
-		//.when('/:id', {
-		//	templateUrl: '/app/todo/todoDetail.html',
-		//	controller: 'TodoDetailCtrl'
-		//});
+		.when('/:id', {
+			templateUrl: '/app/angularBlobs/views/blobDetails.html',
+			controller: 'BlobDetailsController'
+		});
 	}]);

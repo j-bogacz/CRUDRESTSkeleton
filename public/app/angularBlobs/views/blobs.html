@@ -1,8 +1,10 @@
 ﻿Search: <input type="text" ng-model="search.name">
 <ul ng-repeat="blob in blobs | filter: search">
-    <li>{{blob.name}}</li>
-    <li>{{blob.badge}}</li>
-    <li>{{blob.dob}}</li>
-    <li>{{blob.isloved}}</li>
-    <li>{{blob._id}}</li>
+    <li>
+        <a href="#/{{blob._id}}">{{blob._id}}</a>
+        <a>{{blob.name}}</a>
+        <a>{{blob.badge}}</a>
+        <a>{{blob.dob | date}}</a>
+        <input type="checkbox" ng-model="blob.isLoved">
+    </li>
 </ul>
